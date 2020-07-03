@@ -108,5 +108,5 @@ return new Promise(resolve => {
      resolve( ... something ...)
      .... something ...
    });
-}
+
 ```

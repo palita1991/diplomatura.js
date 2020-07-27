@@ -1,3 +1,16 @@
 body {
   font-family: sans-serif;
 }
+
+h2 {
+  color: purple;
+}
+
+h3 {
+  color: lightseagreen;
+}
+
+#globos {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -72,7 +72,7 @@ Importante: al hacer click en cualquiera de los botones, el contenido actual del
 
 3. Agregar a cada item un botón pequeño que permita eliminar el item seleccionado de la lista.
 
-4. Agregar estilos a los botones: el botón para agregarun item debe tener un color de fondo verde, mientras que el botón de eliminar debe ser rojo.
+4. Agregar estilos a los botones: el botón para agregar un item debe tener un color de fondo verde, mientras que el botón de eliminar debe ser rojo.
 
 5. Investigar `localStorage API` para permitir persistir los datos entre refrescos de la página. Es posible que necesiten utilizar las funciones `JSON.parse` y `JSON.stringify` para convertir un objeto a string (y viceversa).
 

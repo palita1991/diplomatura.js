@@ -10,7 +10,7 @@ export default class alumnos extends React.Component {
   }
 
   changeSelection(alumno) {
-    this.props.setVistaActual("<ul>veerdura</ul>", alumno.id);
+    this.props.setVistaActual("detalleAlumno", alumno.id);
   }
 
   render() {

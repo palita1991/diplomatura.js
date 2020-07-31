@@ -41,9 +41,9 @@ class App extends React.Component {
     const { vistaActual } = this.state;
     if (vistaActual === "alumnos") {
       return <Alumnos setVistaActual={this.setVistaActual} />;
-    } else if (vistaActual === "detalleAlumno") {
+    } else if (vistaActual === "Alumno") {
       return <DetalleAlumno idAlumno={this.state.idDetalleSeleccionado} />;
-    } else if (vistaActual === "detalleProfesor") {
+    } else if (vistaActual === "Profesor") {
       return <DetalleProfesor idProfesor={this.state.idDetalleSeleccionado} />;
     } else {
       return <Profesores setVistaActual={this.setVistaActual} />;
@@ -76,7 +76,7 @@ class App extends React.Component {
           <button className="btn btn-outline-info">Calificaciones</button>
         </div>
         <div className="mainView">
-          <h2>{this.state.vistaActual}</h2>
+          <h2 className="text-uppercase">{this.state.vistaActual}</h2>
           <div className="mainView">{vistaActual}</div>
         </div>
       </div>

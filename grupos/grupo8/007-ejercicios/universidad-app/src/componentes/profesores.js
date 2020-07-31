@@ -10,36 +10,36 @@ export default class Profesores extends React.Component {
     this.deleteSelection = this.deleteSelection.bind(this);
   }
 
-  changeSelection(profesor) {
-    this.props.setVistaActual("detalleProfesor", profesor.id);
+  changeSelection(teacher) {
+    this.props.setVistaActual("Profesor", teacher);
   }
 
-  deleteSelection(p) {
+  deleteSelection(idTeacher) {
     const searchTeacher = this.state.profesores.filter(
-      (profesor) => profesor.id !== p.id
+      (teacher) => teacher.id !== idTeacher
     );
     this.setState({ profesores: searchTeacher });
   }
   render() {
     return (
       <ul className="list-group">
-        {this.state.profesores.map((profesor) => {
+        {this.state.profesores.map((teacher) => {
           return (
             <div
-              key={profesor.id}
+              key={teacher.id}
               className="d-flex flex-row justify-content-center w-100"
             >
               <li
                 onClick={() => {
-                  this.changeSelection(profesor);
+                  this.changeSelection(teacher.id);
                 }}
                 className="list-group-item w-25 my-1"
               >
-                {profesor.nombre}
+                {teacher.nombre}
               </li>
               <button
                 onClick={() => {
-                  this.deleteSelection(profesor);
+                  this.deleteSelection(teacher.id);
                 }}
                 className="btn btn-outline-danger ml-1 my-1"
               >

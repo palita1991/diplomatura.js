@@ -10,12 +10,14 @@ export default class DetalleAlumno extends React.Component {
 
   render() {
     const { idAlumno } = this.props;
-    const prueba = this.state.alumnos.find((alumno) => alumno.id === idAlumno);
+    const searchStudent = this.state.alumnos.find(
+      (alumno) => alumno.id === idAlumno
+    );
     return (
-      <ul>
-        <li key={prueba.id} className="list-group-item">
-          {prueba.id}
-          {prueba.nombre}
+      <ul className="d-flex justify-content-center">
+        <li key={searchStudent.id} className="list-group-item active w-25">
+          <strong className="mr-1">{searchStudent.id}</strong>
+          {searchStudent.nombre}
         </li>
       </ul>
     );

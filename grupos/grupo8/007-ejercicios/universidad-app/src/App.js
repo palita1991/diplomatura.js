@@ -38,7 +38,6 @@ class App extends React.Component {
   }
 
   mostrarListado() {
-    console.log("prueba");
     const { vistaActual } = this.state;
     if (vistaActual === "alumnos") {
       return <Alumnos setVistaActual={this.setVistaActual} />;

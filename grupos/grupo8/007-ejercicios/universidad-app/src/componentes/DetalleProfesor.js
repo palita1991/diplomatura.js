@@ -14,12 +14,16 @@ export default class DetalleProfesor extends React.Component {
       (profesor) => profesor.id === idProfesor
     );
     return (
-      <ul className="d-flex justify-content-center">
-        <li key={searchTeacher.id} className="list-group-item active w-25">
-          <strong className="mr-1">{searchTeacher.id}</strong>
-          {searchTeacher.nombre}
-        </li>
-      </ul>
+      <div className="alert alert-primary d-flex justify-content-center">
+        <div className="row w-100" key={searchTeacher.id}>
+          <div className="col-6">
+            <strong className="mr-1">Id: </strong> {searchTeacher.id}
+          </div>
+          <div className="col-6">
+            <strong className="mr-1">Nombre: </strong> {searchTeacher.nombre}
+          </div>
+        </div>
+      </div>
     );
   }
 }

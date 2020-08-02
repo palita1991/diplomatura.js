@@ -6,24 +6,20 @@ export default class Profesores extends React.Component {
     this.state = {
       profesores: basededatos.profesores,
     };
-    this.changeSelection = this.changeSelection.bind(this);
-    this.deleteSelection = this.deleteSelection.bind(this);
   }
 
-  changeSelection(teacher) {
-    this.props.setVistaActual("Profesor", teacher);
-  }
+  changeSelection = (teacher) => {
+    this.props.setVistaActual("Profesor", teacher.id);
+  };
 
-  deleteSelection(idTeacher) {
-    const searchTeacher = this.state.profesores.filter(
-      (teacher) => teacher.id !== idTeacher
-    );
-    this.setState({ profesores: searchTeacher });
-  }
+  deleteSelection = (teacher) => {
+    this.props.deleteSelection("profesores", teacher);
+  };
   render() {
+    const { profesores } = this.props;
     return (
       <ul className="list-group">
-        {this.state.profesores.map((teacher) => {
+        {profesores.map((teacher) => {
           return (
             <div
               key={teacher.id}
@@ -31,7 +27,7 @@ export default class Profesores extends React.Component {
             >
               <li
                 onClick={() => {
-                  this.changeSelection(teacher.id);
+                  this.changeSelection(teacher);
                 }}
                 className="list-group-item w-25 my-1"
               >
@@ -39,7 +35,7 @@ export default class Profesores extends React.Component {
               </li>
               <button
                 onClick={() => {
-                  this.deleteSelection(teacher.id);
+                  this.deleteSelection(teacher);
                 }}
                 className="btn btn-outline-danger ml-1 my-1"
               >

@@ -16,9 +16,6 @@ class App extends React.Component {
       materias: datos.materias,
       calificaciones: datos.calificaciones,
     };
-    /*     this.mostrarListado = this.mostrarListado.bind(this);
-    this.modificarVista = this.modificarVista.bind(this); */
-    this.setVistaActual = this.setVistaActual.bind(this);
   }
   /**
    * Se utiliza para disparar el cambio de vista.
@@ -26,7 +23,7 @@ class App extends React.Component {
    * @param {*} vista
    * @param {*} idSeleccionado
    */
-  setVistaActual(vista, idSeleccionado) {
+  setVistaActual = (vista, idSeleccionado) => {
     const newState = { vistaActual: vista };
 
     if (idSeleccionado) {
@@ -35,23 +32,51 @@ class App extends React.Component {
       newState.idDetalleSeleccionado = -1;
     }
     this.setState(newState);
-  }
+  };
 
-  mostrarListado() {
+  deleteSelection = (vista, seleccionado) => {
+    if (vista === "alumnos") {
+      const searchStudent = this.state.alumnos.filter(
+        (s) => s.id !== seleccionado.id
+      );
+      this.setState({ alumnos: searchStudent });
+    } else if (vista === "profesores") {
+      const searchTeacher = this.state.profesores.filter(
+        (t) => t.id !== seleccionado.id
+      );
+      this.setState({ profesores: searchTeacher });
+    } else if (vista === "materias") {
+      console.log("materias");
+    } else {
+      console.log("calificaciones");
+    }
+  };
+
+  mostrarListado = () => {
     const { vistaActual } = this.state;
     if (vistaActual === "alumnos") {
-      return <Alumnos setVistaActual={this.setVistaActual} />;
+      return (
+        <Alumnos
+          setVistaActual={this.setVistaActual}
+          deleteSelection={this.deleteSelection}
+          alumnos={this.state.alumnos}
+        />
+      );
     } else if (vistaActual === "Alumno") {
       return <DetalleAlumno idAlumno={this.state.idDetalleSeleccionado} />;
     } else if (vistaActual === "Profesor") {
       return <DetalleProfesor idProfesor={this.state.idDetalleSeleccionado} />;
     } else {
-      return <Profesores setVistaActual={this.setVistaActual} />;
+      return (
+        <Profesores
+          setVistaActual={this.setVistaActual}
+          deleteSelection={this.deleteSelection}
+        />
+      );
     }
-  }
+  };
 
   render() {
-    const vistaActual = <div>{this.mostrarListado()}</div>;
     return (
       <div className="App">
         <header className="alert alert-info">Diplomatura JS</header>
@@ -59,7 +84,7 @@ class App extends React.Component {
           <button
             className="btn btn-outline-info"
             onClick={() => {
-              this.setVistaActual("alumnos", null);
+              this.setVistaActual("alumnos");
             }}
           >
             Alumnos
@@ -67,7 +92,7 @@ class App extends React.Component {
           <button
             className="btn btn-outline-info"
             onClick={() => {
-              this.setVistaActual("profesores", null);
+              this.setVistaActual("profesores");
             }}
           >
             Profesores
@@ -77,7 +102,7 @@ class App extends React.Component {
         </div>
         <div className="mainView">
           <h2 className="text-uppercase">{this.state.vistaActual}</h2>
-          <div className="mainView">{vistaActual}</div>
+          <div className="mainView">{this.mostrarListado()}</div>
         </div>
       </div>
     );

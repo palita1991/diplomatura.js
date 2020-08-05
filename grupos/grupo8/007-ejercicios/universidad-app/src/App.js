@@ -1,18 +1,23 @@
-import React from 'react';
-import './App.css';
-import datos from './datos';
+import React from "react";
+import "./App.css";
+import datos from "./datos";
+import Alumnos from "./components/Alumnos";
+import Profesores from "./components/Profesores";
+import DetalleAlumno from "./components/DetalleAlumno";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      vistaActual: 'alumnos',
+      cabeceraActual: "Listado",
+      vistaActual: "",
       idDetalleSeleccionado: -1,
       alumnos: datos.alumnos,
       profesores: datos.profesores,
       materias: datos.materias,
       calificaciones: datos.calificaciones,
     };
+    this.setVistaActual = this.setVistaActual.bind(this);
   }
   /**
    * Se utiliza para disparar el cambio de vista.
@@ -27,21 +32,50 @@ class App extends React.Component {
     } else {
       newState.idDetalleSeleccionado = -1;
     }
-    this.setState(newState);
+    /* this.setState(newState); */
+    console.log(idSeleccionado);
+    this.setState({
+      cabeceraActual: "Informacion",
+      vistaActual: <DetalleAlumno idAlumno={this.idDetalleSeleccionado} />,
+    });
   }
+
+  mostrarAlumnos() {
+    this.setState({
+      cabeceraActual: "Alumnos",
+      vistaActual: <Alumnos setVistaActual={this.setVistaActual} />,
+    });
+  }
+
+  mostrarProfesores() {
+    this.setState({
+      cabeceraActual: "Profesores",
+      vistaActual: <Profesores />,
+    });
+  }
+
   render() {
-    const vistaActual = <div>ToDo</div>;
     return (
       <div className="App">
         <header className="alert alert-info">Diplomatura JS</header>
         <div id="botonera">
-          <button className="btn btn-outline-info">Alumnos</button>
-          <button className="btn btn-outline-info">Profesores</button>
+          <button
+            className="btn btn-outline-info"
+            onClick={this.mostrarAlumnos.bind(this)}
+          >
+            Alumnos
+          </button>
+          <button
+            className="btn btn-outline-info"
+            onClick={this.mostrarProfesores.bind(this)}
+          >
+            Profesores
+          </button>
           <button className="btn btn-outline-info">Materias</button>
           <button className="btn btn-outline-info">Calificaciones</button>
         </div>
-        <h2>{this.state.vistaActual}</h2>
-        <div className="mainView">{vistaActual}</div>
+        <h2>{this.state.cabeceraActual}</h2>
+        <div className="mainView">{this.state.vistaActual}</div>
       </div>
     );
   }

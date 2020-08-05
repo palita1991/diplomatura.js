@@ -63,7 +63,12 @@ class App extends React.Component {
         />
       );
     } else if (vistaActual === "Alumno") {
-      return <DetalleAlumno idAlumno={this.state.idDetalleSeleccionado} />;
+      return (
+        <DetalleAlumno
+          idAlumno={this.state.idDetalleSeleccionado}
+          alumnos={this.state.alumnos}
+        />
+      );
     } else if (vistaActual === "Profesor") {
       return <DetalleProfesor idProfesor={this.state.idDetalleSeleccionado} />;
     } else {
@@ -71,6 +76,7 @@ class App extends React.Component {
         <Profesores
           setVistaActual={this.setVistaActual}
           deleteSelection={this.deleteSelection}
+          profesores={this.state.profesores}
         />
       );
     }

@@ -15,3 +15,11 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.listado {
+  cursor: pointer;
+}
+
+.listado:hover {
+  background: #d1ecf1;
+}

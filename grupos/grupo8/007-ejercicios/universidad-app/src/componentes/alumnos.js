@@ -30,16 +30,20 @@ export default class Alumnos extends React.Component {
             return (
               <div
                 key={student.id}
-                className="d-flex flex-row justify-content-center w-100"
+                className="d-flex flex-row justify-content-center w-100 my-2"
               >
                 <li
-                  onClick={this.changeSelection.bind(this, student)}
-                  className="list-group-item w-25 my-1"
+                  onClick={() => {
+                    this.changeSelection(student);
+                  }}
+                  className="list-group-item w-50 listado"
                 >
                   {student.nombre}
                 </li>
                 <button
-                  onClick={this.deleteSelection.bind(this, student)}
+                  onClick={() => {
+                    this.deleteSelection(student);
+                  }}
                   className="btn btn-outline-danger ml-1 my-1"
                 >
                   Delete

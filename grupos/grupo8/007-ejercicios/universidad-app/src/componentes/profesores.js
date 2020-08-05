@@ -1,11 +1,8 @@
 import React from "react";
-import basededatos from "../datos/index.js";
 export default class Profesores extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      profesores: basededatos.profesores,
-    };
+    this.state = {};
   }
 
   changeSelection = (teacher) => {
@@ -23,13 +20,13 @@ export default class Profesores extends React.Component {
           return (
             <div
               key={teacher.id}
-              className="d-flex flex-row justify-content-center w-100"
+              className="d-flex flex-row justify-content-center w-100 my-2"
             >
               <li
                 onClick={() => {
                   this.changeSelection(teacher);
                 }}
-                className="list-group-item w-25 my-1"
+                className="list-group-item w-50 listado"
               >
                 {teacher.nombre}
               </li>
